@@ -1,6 +1,6 @@
 <template>
   <div :class="containerClasses">
-		<span v-if="icon" class="material-icons" v-text="icon" />
+		<span v-if="icon" name="icon" class="material-icons md-18" v-text="icon" />
 		<span v-text="label" />
   </div>
 </template>
@@ -24,7 +24,7 @@ export default {
 
 	computed: {
 		containerClasses() {
-			return `button ${this.outline ? 'outline' : 'filled'}`;
+			return `button ${this.outline ? 'outline' : 'filled'} flex-row align-center`;
 		}
 	}
 }
@@ -45,6 +45,9 @@ export default {
 }
 .button > span {
 	user-select: none;
+}
+.button > span[name="icon"] {
+	margin-right: 5px;
 }
 
 .filled {

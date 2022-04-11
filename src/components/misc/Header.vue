@@ -1,12 +1,12 @@
 
 <template>
-  <header class="header-bg-color">
+  <header class="flex-row justify-between align-center">
     <img
       :src="otLogo"
       alt="Oliveira Trust"
     />
 
-    <UserInfo username="Marcello Carvalhal" />
+    <UserInfo :avatarUrl="avatarUrl" :username="username" />
   </header>
 </template>
 
@@ -19,7 +19,10 @@ export default {
   components: {
     UserInfo
   },
-  props: {},
+  props: {
+    username: String,
+    avatarUrl: String
+  },
 
   computed: {
     otLogo() {
@@ -38,10 +41,6 @@ export default {
 <style scoped>
 header {
   padding: 15px 100px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 
   background: #FFFFFF;
 }

@@ -1,7 +1,7 @@
 
 <template>
-  <section class="container">
-    <div class="avatar-container">
+  <section class="flex-row justify-between align-center">
+    <div class="avatar-container flex-row align-center">
       <div class="avatar">
         <img :src="avatarUrl" :alt="username">
       </div>
@@ -41,17 +41,10 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+@import url('../../styles/classes.css');
 
 .avatar-container {
   margin-right: 20px;
-
-  display: flex;
-  align-items: center;
 }
 .avatar {
   width: 35px;

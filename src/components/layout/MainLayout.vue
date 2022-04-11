@@ -1,17 +1,23 @@
 
 <template>
   <div id="layout">
-    <Header />
+    <Header username="Marcello Carvalhal" />
 
     <section class="content">
-      <header>
+      <header class="flex-row justify-between align-center">
         <h2>Carteiras BTC</h2>
         <Button label="Adicionar Carteira" />
       </header>
 
       <main>
-        <Container>
+        <Container row justify-between align-center>
+          <div class="inputs">
+            <input type="text">
+            <input type="text">
+            <input type="text">
+          </div>
 
+          <Button outline icon="search" label="Buscar" />
         </Container>
       </main>
 
@@ -54,15 +60,9 @@ export default {
   color: #3A3A3A;
 }
 
-#layout > .content {
+.content {
   margin-top: 45px;
   padding: 0 100px;
-}
-
-.content > header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 .content > main {
   margin-top: 10px;
