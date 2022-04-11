@@ -9,6 +9,12 @@
         <Button label="Adicionar Carteira" />
       </header>
 
+      <main>
+        <Container>
+
+        </Container>
+      </main>
+
     </section>
   </div>
 </template>
@@ -16,13 +22,15 @@
 <script>
 import Header from '../misc/Header.vue';
 import Button from '../button/Button.vue';
+import Container from '../misc/Container.vue';
 
 export default {
   name: 'MainLayout',
 
   components: {
     Header,
-    Button
+    Button,
+    Container
 },
 
   props: {},
@@ -55,5 +63,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.content > main {
+  margin-top: 10px;
 }
 </style>
