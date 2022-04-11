@@ -54,8 +54,8 @@ export default {
   align-items: center;
 }
 .avatar {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   margin-right: 10px;
   overflow: hidden;
 
