@@ -1,23 +1,29 @@
 
 <template>
-  <!-- 
-    to implement
-    https://www.npmjs.com/package/vue-material-design-icons
-   -->
   <div id="layout">
     <Header />
+
+    <section class="content">
+      <header>
+        <h2>Carteiras BTC</h2>
+        <Button label="Adicionar Carteira" />
+      </header>
+
+    </section>
   </div>
 </template>
 
 <script>
 import Header from '../misc/Header.vue';
+import Button from '../button/Button.vue';
 
 export default {
   name: 'MainLayout',
 
   components: {
     Header,
-  },
+    Button
+},
 
   props: {},
 
@@ -40,8 +46,14 @@ export default {
   color: #3A3A3A;
 }
 
-/* #layout > .content {
-  width: 80%;
-  margin: auto;
-} */
+#layout > .content {
+  margin-top: 45px;
+  padding: 0 100px;
+}
+
+.content > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 </style>
