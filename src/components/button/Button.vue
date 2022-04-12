@@ -18,7 +18,7 @@ export default {
 
 		outline: {
 			type: Boolean,
-			default: () => false
+			default: false
 		}
 	},
 

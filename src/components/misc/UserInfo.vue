@@ -6,7 +6,7 @@
       <span v-text="username" />
     </div>
 
-    <IconButton icon="logout" :size="18" @click="logout" />
+    <IconButton icon="logout" @click="logout" />
   </section>
 </template>
 
