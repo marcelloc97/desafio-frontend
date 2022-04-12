@@ -24,16 +24,23 @@ export default {
 	},
 
 	computed: {
+		positionsMap() {
+			return {
+				'justifyStart': 'justify-start',
+				'justifyCenter': 'justify-center',
+				'justifyBetween': 'justify-between',
+				'justifyEvenly': 'justify-evenly',
+				'justifyAround': 'justify-around',
+				'justifyEnd': 'justify-end',
+
+				'alignStart': 'align-start',
+				'alignCenter': 'align-center',
+				'alignEnd': 'align-end',
+			};
+		},
+
 		containerClasses() {
 			const classes = ['container'];
-			// const positionsMap = {
-			// 	'start': 'Start',
-			// 	'center': 'Center',
-			// 	'between': 'Between',
-			// 	'evenly': 'Evenly',
-			// 	'around': 'Around',
-			// 	'end': 'End'
-			// };
 
 			if (this.row) {
 				classes.push('flex-row');
@@ -41,7 +48,20 @@ export default {
 				classes.push('flex-column');
 			}
 
-			// TODO: for justify and align, make it match in dynamic logic
+			// pegamos todas as chaves do nosso props
+			const keys = Object.keys(this.$props);
+
+			// filtramo-as com base nos caracteres maiúsculos
+			const filteredKeys = keys.filter(key => /[A-Z]/g.exec(key));
+			
+			// rodamos as chaves filtradas e verificamos se o prop correspondente
+			// foi chamado pelo componente pai
+			filteredKeys.forEach(key => {
+				if (this.$props[key]) {
+					// adicionamos ao array e o vue faz o resto
+					classes.push(this.positionsMap[key]);
+				}
+			});
 
 			return classes;
 		}
