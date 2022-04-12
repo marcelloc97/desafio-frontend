@@ -11,11 +11,10 @@
 
       <main>
         <Container row justify-between align-center>
-          <div class="inputs">
-            <!-- TODO: input components -->
-            <input type="text">
-            <input type="text">
-            <input type="text">
+          <div class="inputs flex-row align-center">
+            <Input label="Nome" />
+            <Input label="Sobrenome" />
+            <Input label="E-mail" />
           </div>
 
           <Button outline icon="search" label="Buscar" />
@@ -50,6 +49,7 @@
 import Header from '../misc/Header.vue';
 import Button from '../button/Button.vue';
 import Container from '../misc/Container.vue';
+import Input from '../form/Input.vue';
 
 export default {
   name: 'MainLayout',
@@ -57,8 +57,9 @@ export default {
   components: {
     Header,
     Button,
-    Container
-},
+    Container,
+    Input
+  },
 
   props: {},
 
@@ -87,6 +88,13 @@ export default {
 }
 .content > main {
   margin-top: 10px;
+}
+
+.inputs > .input-container {
+  margin-right: 10px;
+}
+.inputs > .input-container:last-child {
+  margin: 0;
 }
 
 .table-container {
