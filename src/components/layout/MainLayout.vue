@@ -12,6 +12,7 @@
       <main>
         <Container row justify-between align-center>
           <div class="inputs">
+            <!-- TODO: input components -->
             <input type="text">
             <input type="text">
             <input type="text">
@@ -19,8 +20,28 @@
 
           <Button outline icon="search" label="Buscar" />
         </Container>
+
+        <Container class="table-container">
+          <table>
+            <thead>
+              <th>a</th>
+            </thead>
+            <tbody>
+              <td>b</td>
+            </tbody>
+          </table>
+        </Container>
       </main>
 
+      <footer>
+        Powered by:
+        <a
+          href="https://github.com/marcelloc97"
+          target="_blank"
+        >
+          Marcello Carvalhal
+        </a>
+      </footer>
     </section>
   </div>
 </template>
@@ -61,10 +82,14 @@ export default {
 }
 
 .content {
-  margin-top: 45px;
+  margin-top: 35px;
   padding: 0 100px;
 }
 .content > main {
   margin-top: 10px;
+}
+
+.table-container {
+  margin-top: 20px;
 }
 </style>
