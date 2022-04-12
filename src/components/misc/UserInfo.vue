@@ -2,27 +2,27 @@
 <template>
   <section class="flex-row justify-between align-center">
     <div class="avatar-container flex-row align-center">
-      <div class="avatar">
-        <img :src="avatarUrl" :alt="username">
-      </div>
+      <Avatar :avatarUrl="avatarUrl" />
       <span v-text="username" />
     </div>
-    <button @click="logout">
-      <span class="material-icons md-18">logout</span>
-    </button>
+
+    <IconButton icon="logout" :size="18" @click="logout" />
   </section>
 </template>
 
 <script>
-import AvatarImage from '../../assets/avatar.png';
+import Avatar from './Avatar.vue';
+import IconButton from '../button/IconButton.vue';
 
 export default {
   name: 'UserInfo',
-  components: {},
+  components: {
+    Avatar,
+    IconButton,
+  },
   props: {
     avatarUrl: {
-      type: String,
-      default: () => AvatarImage,
+      type: String
     },
 
     username: {
@@ -46,40 +46,8 @@ export default {
 .avatar-container {
   margin-right: 20px;
 }
-.avatar {
-  width: 35px;
-  height: 35px;
-  margin-right: 10px;
-  overflow: hidden;
-
-  border-radius: 50%;
-}
-.avatar > img {
-  width: 100%;
-  height: 100%;
-}
 .avatar-container > span {
   font-size: 0.9em;
   font-weight: bold;
-}
-
-button {
-  width: 30px;
-  height: 30px;
-  padding: 0;
-  margin: 0;
-  outline: none;
-
-  border: none;
-  background: none;
-  border-radius: 50%;
-  text-align: center;
-  cursor: pointer;
-}
-button:hover {
-  background: #F5F6F8;
-}
-button:active {
-  background: #ebedf2;
 }
 </style>
