@@ -56,6 +56,9 @@ export default {
 	border: none;
 }
 .filled:hover {
+	background: #0f8cda;
+}
+.filled:active {
 	background: #0C9BF2;
 }
 
@@ -65,6 +68,11 @@ export default {
 	border: 1px solid #007BFF;
 }
 .outline:hover {
+	background: #0f8cda22;
+	color: #0f8cda;
+	border-color: #0f8cda;
+}
+.outline:active {
 	background: #0C9BF222;
 	color: #0C9BF2;
 	border-color: #0C9BF2;
