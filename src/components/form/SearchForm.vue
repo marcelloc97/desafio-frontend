@@ -1,6 +1,6 @@
 
 <template>
-  <form class="form flex-row justify-between" @submit.prevent="submit">
+  <div class="form flex-row justify-between">
     <div class="inputs flex-row">
       <Input
         label="Nome"
@@ -16,23 +16,24 @@
 
       <Input
         label="E-mail"
+        type="email"
         :model-value="email"
         @update:model-value="(value) => updateInput('email', value)"
       />
     </div>
 
     <Button outline icon="search" label="Buscar" @click="submit" />
-  </form>
+  </div>
 </template>
 
 <script>
-// import Input from './Input.vue';
+import Input from './Input.vue';
 import Button from '../button/Button.vue';
 
 export default {
   name: 'SearchForm',
   components: {
-    // Input,
+    Input,
     Button
   },
 
@@ -46,18 +47,17 @@ export default {
 
   methods: {
     submit() {
-
-      console.log('fuck you');
-
-      this.$emit('submit', {
-        name: this.name,
-        lastname: this.lastname,
-        email: this.email
-      });
-
-      this.name = undefined;
-      this.lastname = undefined;
-      this.email = undefined;
+      if (this.name || this.lastname || this.email) {
+        this.$emit('submit', {
+          name: this.name,
+          lastname: this.lastname,
+          email: this.email
+        });
+  
+        this.name = undefined;
+        this.lastname = undefined;
+        this.email = undefined;
+      }
     },
 
     updateInput(name, value) {

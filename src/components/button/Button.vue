@@ -1,5 +1,10 @@
 <template>
-  <div :class="containerClasses">
+  <div
+		:class="containerClasses"
+		:type="type"
+	
+		@click="$emit('click', $event)"
+	>
 		<span v-if="icon" name="icon" class="material-icons md-18" v-text="icon" />
 		<span v-text="label" />
   </div>
@@ -14,6 +19,7 @@ export default {
 			default: 'Button'
 		},
 
+		type: String,
 		icon: String,
 
 		outline: {

@@ -1,19 +1,17 @@
 
 <template>
-  <div :class="containerClasses" @click="focus">
-    <span v-if="showingLabel" v-text="label" />
-    <input
-      v-if="!showingLabel"
-      ref="input"
+  <input
+    class="input-container flex-column"
 
-      :value="modelValue"
-      :type="type"
-      :disabled="disabled"
+    :placeholder="label"
+    :value="modelValue"
+    :type="type"
+    :disabled="disabled"
 
-      @change="updateModelValue"
-      @blur="unfocus"
-    />
-  </div>
+    @input="updateModelValue"
+    @click="focus"
+    @blur="unfocus"
+  />
 </template>
 
 <script>
@@ -36,34 +34,9 @@ export default {
     disabled: Boolean
   },
 
-  computed: {
-    containerClasses() {
-      const classes = [
-        'input-container',
-        'flex-column'
-      ];
-
-      if (this.isFocused) {
-        classes.push('focus');
-      }
-
-      return classes;
-    },
-
-    showingLabel() {
-      return Boolean(!this.modelValue) && !this.isFocused;
-    }
-  },
-
-  data() {
-    return {
-      isFocused: false,
-    };
-  },
-
   methods: {
     updateModelValue(event) {
-      let value = event.target.value.replace(/[\n\r\s\t]+/gi, '');
+      let value = event.target.value;
 
       if (value === '') {
         value = undefined;
@@ -72,20 +45,11 @@ export default {
       this.$emit('update:model-value', value);
     },
 
-    focus() {
-      if (!this.isFocused) {
-        this.isFocused = true;
-
-        this.$nextTick(() => {
-          this.$refs.input.focus();
-        });
-      }
+    focus(e) {
+      this.$emit('focus', e);
     },
-
-    unfocus() {
-      if (this.isFocused) {
-        this.isFocused = false;
-      }
+    unfocus(e) {
+      this.$emit('unfocus', e);
     }
   }
 }
@@ -100,27 +64,16 @@ export default {
 
   font-size: 0.9em;
   text-align: start;
-  color: #3A3A3Aaa;
+  color: #3A3A3A;
 
   border: 1px solid #00000022;
   border-radius: 5px;
+  outline: none;
 
   cursor: text;
   transition: all 0.2s ease-in-out;
 }
-.input-container > span {
-  user-select: none;
-}
-
-.input-container > input {
-  color: #3A3A3A;
-
-  background: none;
-  border: none;
-  outline: none;
-}
-
-.focus {
+.input-container:focus {
   border-color: #0C9BF2; 
 }
 </style>

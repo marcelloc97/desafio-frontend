@@ -35,7 +35,7 @@ export default {
 
 				'alignStart': 'align-start',
 				'alignCenter': 'align-center',
-				'alignEnd': 'align-end',
+				'alignEnd': 'align-end'
 			};
 		},
 
