@@ -1,8 +1,9 @@
 
 <template>
-  <div class="input-container flex-column" @click="focus">
-    <span :class="spanClasses" v-text="label" />
+  <div :class="containerClasses" @click="focus">
+    <span v-if="showingLabel" v-text="label" />
     <input
+      v-if="!showingLabel"
       ref="input"
 
       :value="modelValue"
@@ -20,35 +21,55 @@ export default {
   name: 'Input',
 
   props: {
-    modelValue: [String, Number],
+    modelValue: String,
 
     label: {
       type: String,
       required: true
     },
 
-    type: String,
-    disabled: Boolean,
-
-    filled: Boolean,
-    outline: Boolean
+    type: {
+      type: String,
+      default: 'text'
+    },
+    
+    disabled: Boolean
   },
 
   computed: {
-    spanClasses() {
-      return this.isFocused ? 'focused' : '';
+    containerClasses() {
+      const classes = [
+        'input-container',
+        'flex-column'
+      ];
+
+      if (this.isFocused) {
+        classes.push('focus');
+      }
+
+      return classes;
+    },
+
+    showingLabel() {
+      return Boolean(!this.modelValue) && !this.isFocused;
     }
   },
 
   data() {
     return {
-      isFocused: Boolean(this.modelValue),
+      isFocused: false,
     };
   },
 
   methods: {
-    updateModelValue(newVal) {
-      this.$emit('update:model-value', newVal);
+    updateModelValue(event) {
+      let value = event.target.value.replace(/[\n\r\s\t]+/gi, '');
+
+      if (value === '') {
+        value = undefined;
+      }
+
+      this.$emit('update:model-value', value);
     },
 
     focus() {
@@ -57,7 +78,7 @@ export default {
 
         this.$nextTick(() => {
           this.$refs.input.focus();
-        })
+        });
       }
     },
 
@@ -77,35 +98,29 @@ export default {
   padding: 10px;
   position: relative;
 
-  font-size: 0.8em;
+  font-size: 0.9em;
   text-align: start;
   color: #3A3A3Aaa;
 
   border: 1px solid #00000022;
+  border-radius: 5px;
 
   cursor: text;
   transition: all 0.2s ease-in-out;
 }
-.input-container:focus {
-  border-color: #09f;
-}
 .input-container > span {
   user-select: none;
 }
+
 .input-container > input {
-  margin-top: 5px;
+  color: #3A3A3A;
 
   background: none;
   border: none;
   outline: none;
 }
 
-.focused {
-  margin: 5px 11px;
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  font-size: 0.75em;
+.focus {
+  border-color: #0C9BF2; 
 }
 </style>
