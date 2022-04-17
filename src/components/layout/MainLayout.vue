@@ -11,13 +11,7 @@
 
       <main>
         <Container row justify-between align-center>
-          <div class="inputs flex-row align-center">
-            <Input label="Nome" />
-            <Input label="Sobrenome" />
-            <Input label="E-mail" />
-          </div>
-
-          <Button outline icon="search" label="Buscar" />
+          <SearchForm @submit="searchData" />
         </Container>
 
         <Container class="table-container">
@@ -49,16 +43,17 @@
 import Header from '../misc/Header.vue';
 import Button from '../button/Button.vue';
 import Container from '../misc/Container.vue';
-import Input from '../form/Input.vue';
+import SearchForm from '../form/SearchForm.vue';
 
 export default {
   name: 'MainLayout',
 
   components: {
     Header,
-    Button,
     Container,
-    Input
+    SearchForm,
+
+    Button
   },
 
   props: {},
@@ -66,10 +61,20 @@ export default {
   computed: {},
 
   data() {
-    return {};
+    return {
+      userData: {
+        name: undefined,
+        lastname: undefined,
+        email: undefined
+      }
+    };
   },
 
-  methods: {}
+  methods: {
+    searchData(value) {
+      console.log(value);
+    }
+  }
 }
 </script>
 
@@ -88,13 +93,6 @@ export default {
 }
 .content > main {
   margin-top: 10px;
-}
-
-.inputs > .input-container {
-  margin-right: 10px;
-}
-.inputs > .input-container:last-child {
-  margin: 0;
 }
 
 .table-container {
